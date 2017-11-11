@@ -23,6 +23,8 @@ public:
 	char icon;
 	bool jumping = false;
 	int jumpFrame = 0;
+	int oldx;
+	int oldy;
 
 	Character(int type);
 	~Character();

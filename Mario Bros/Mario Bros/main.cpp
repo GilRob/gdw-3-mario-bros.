@@ -43,12 +43,14 @@ int main()
 	/* init the game */
 	Game = new MarioBros();
 	Game->initializeGame();
+
+	Game->DrawGame();
 	double i;
 	bool run = true;
 	while (run == true) {
 		if (GetAsyncKeyState('W') & 0x8000){ //VK_DOWN
 			//Game->keyboardDown('w');
-				Game->mario->velocity.y = - 1.25;
+				Game->mario->velocity.y = - 0.8;
 			//if (Game->mario->jumping == false) {
 			//	Game->mario->jumping = true;
 			//	Game->mario->jumpFrame = 0;
@@ -67,7 +69,7 @@ int main()
 		}
 		Game->update();
 		//Game->drawSprites();
-		Game->draw();
+		Game->PreDraw();
 	}
 	return 0;
 }

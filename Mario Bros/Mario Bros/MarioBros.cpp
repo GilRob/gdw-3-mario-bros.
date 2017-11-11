@@ -69,9 +69,26 @@ void MarioBros::draw()
 
 void MarioBros::PreDraw()
 {
-	//compile new display image array
-	//add sprites to image
-	//Win/Lose Check
+	for (int i = 0; i < levelY; i++) {
+		for (int j = 0; j < levelX; j++) {
+			if ((int)mario->position.y == i && (int)mario->position.x == j) {
+				setCursorPosition(j, i);
+				cout << mario->icon;
+			}
+			else if((int)mario->oldx == j && (int)mario->oldy == i){
+				setCursorPosition(j, i);
+				if (level[i][j] == 0)
+					cout << ' ';
+				else if (level[i][j] == 1)
+					cout << '=';
+				else if (level[i][j] == 2)
+					cout << 'P';
+			}
+			
+		}
+		cout << endl;
+	}
+	//display game image
 }
 
 /*
@@ -97,10 +114,35 @@ void MarioBros::DrawGame()
 	//display game image
 }
 
+void MarioBros::setCursorPosition(int x, int y)
+{
+	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//std::cout.flush();
+	COORD coord = { (SHORT)x, (SHORT)y };
+	SetConsoleCursorPosition(hOut, coord);
+}
+
 void MarioBros::PostDraw()
 {
-	//Exit if Win/Lose
+	const int X = levelX;
+	const int Y = levelY;
+	int x = (int)mario->oldx;
+	int y = (int)mario->oldy;
+	int a = (int)mario->position.x;
+	int b = (int)mario->position.x;
+	if (x != a || y != b) {
+		setCursorPosition(a, b);
+		cout << 'M';
+		setCursorPosition(x, y);
+		if (level[x][y] == 0)
+			cout << ' ';
+		else if (level[x][y] == 1)
+			cout << '=';
+		else if (level[x][y] == 2)
+			cout << 'P';
+	}
 }
+
 
 void MarioBros::drawSprites()
 {
@@ -120,7 +162,8 @@ void MarioBros::update()
 
 	int i = (int)mario->position.y;
 	int j = (int)mario->position.x;
-	
+	mario->oldx = j;
+	mario->oldy = i;
 	mario->addForce(gravity);
 
 	i = (int)mario->position.y;
@@ -149,7 +192,7 @@ void MarioBros::update()
 		mario->jumpFrame = 0;
 	}
 
-	mario->update(1.0);
+	mario->update(0.05);
 
 	if (mario->position.y < 1) mario->position.y = 1;
 	if (mario->position.y > levelY -1) mario->position.y = levelY -1;

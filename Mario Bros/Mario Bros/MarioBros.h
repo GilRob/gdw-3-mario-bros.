@@ -24,7 +24,7 @@ public:
 
 	/* draw/rendering routines */
 	void draw(); // called from the main
-
+	void setCursorPosition(int x, int y);
 	void PreDraw(); // prior to drawing
 	void DrawGame(); // actual drawing the frame
 	void PostDraw(); // cleanup and prepare for next frame
