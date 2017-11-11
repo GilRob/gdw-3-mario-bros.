@@ -50,7 +50,7 @@ int main()
 	while (run == true) {
 		if (GetAsyncKeyState('W') & 0x8000){ //VK_DOWN
 			//Game->keyboardDown('w');
-				Game->mario->velocity.y = - 0.8;
+				Game->mario->velocity.y = - 0.5;
 			//if (Game->mario->jumping == false) {
 			//	Game->mario->jumping = true;
 			//	Game->mario->jumpFrame = 0;

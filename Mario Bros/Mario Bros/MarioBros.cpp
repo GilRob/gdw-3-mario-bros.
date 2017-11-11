@@ -80,7 +80,7 @@ void MarioBros::PreDraw()
 				if (level[i][j] == 0)
 					cout << ' ';
 				else if (level[i][j] == 1)
-					cout << '=';
+					cout << 'B';
 				else if (level[i][j] == 2)
 					cout << 'P';
 			}
@@ -105,7 +105,7 @@ void MarioBros::DrawGame()
 			else if (level[i][j] == 0)
 				cout << ' ';
 			else if (level[i][j] == 1)
-				cout << '=';
+				cout << 'B';
 			else if (level[i][j] == 2)
 				cout << 'P';
 		}
@@ -137,7 +137,7 @@ void MarioBros::PostDraw()
 		if (level[x][y] == 0)
 			cout << ' ';
 		else if (level[x][y] == 1)
-			cout << '=';
+			cout << 'B';
 		else if (level[x][y] == 2)
 			cout << 'P';
 	}
@@ -158,7 +158,7 @@ void MarioBros::update()
 
 	//if birdlist empty, and piglist empty, end game
 	Vector2 gravity;
-	gravity.set(0, 0.25);
+	gravity.set(0, 0.8);
 
 	int i = (int)mario->position.y;
 	int j = (int)mario->position.x;
