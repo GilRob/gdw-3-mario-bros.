@@ -80,14 +80,15 @@ void MarioBros::PreDraw()
 				if (level[i][j] == 0)
 					cout << ' ';
 				else if (level[i][j] == 1)
-					cout << '=';
+					cout << 'B';
 				else if (level[i][j] == 2)
 					cout << 'P';
 			}
 			
 		}
-		cout << endl;
 	}
+
+	setCursorPosition(levelX, levelY);
 	//display game image
 }
 
@@ -105,7 +106,7 @@ void MarioBros::DrawGame()
 			else if (level[i][j] == 0)
 				cout << ' ';
 			else if (level[i][j] == 1)
-				cout << '=';
+				cout << 'B';
 			else if (level[i][j] == 2)
 				cout << 'P';
 		}
@@ -116,10 +117,15 @@ void MarioBros::DrawGame()
 
 void MarioBros::setCursorPosition(int x, int y)
 {
+
 	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	//std::cout.flush();
 	COORD coord = { (SHORT)x, (SHORT)y };
+	CONSOLE_CURSOR_INFO lpCursor;
+	lpCursor.bVisible = 0;
+	lpCursor.dwSize = 1;
 	SetConsoleCursorPosition(hOut, coord);
+	SetConsoleCursorInfo(hOut, &lpCursor);
 }
 
 void MarioBros::PostDraw()
@@ -158,7 +164,7 @@ void MarioBros::update()
 
 	//if birdlist empty, and piglist empty, end game
 	Vector2 gravity;
-	gravity.set(0, 0.25);
+	gravity.set(0, 1.25);
 
 	int i = (int)mario->position.y;
 	int j = (int)mario->position.x;
@@ -192,7 +198,7 @@ void MarioBros::update()
 		mario->jumpFrame = 0;
 	}
 
-	mario->update(0.05);
+	mario->update(0.025);
 
 	if (mario->position.y < 1) mario->position.y = 1;
 	if (mario->position.y > levelY -1) mario->position.y = levelY -1;
