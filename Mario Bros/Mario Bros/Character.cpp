@@ -2,10 +2,14 @@
 #include "Character.h"
 #include <string>
 
-Character::Character(int type)
+Character::Character(int type, int type2)
 {
 	if (type == 0) {
 		icon = 'M';
+	}
+	if (type2 == 0)
+	{
+		icon2 = 'E';
 	}
 	mass = 1;
 }

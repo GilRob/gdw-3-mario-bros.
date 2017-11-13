@@ -32,16 +32,23 @@ void MarioBros::initializeGame()
 	//MoveWindow(window_handle, x, y, width, height, redraw_window);
 	MoveWindow(console, r.left, r.top, 1000, 800, TRUE);
 	//Add Mario
-		mario = new Character(0);
+		mario = new Character(0,0);
 		mario->acceleration.set(0, 0);
 		mario->force.set(0, 0);
 		mario->velocity.set(0, 0);
-		mario->setPosition(2,2);
+		mario->setPosition(10,10);
 		mario->setCenter(0,0); // center of the sprites origin for rotation
 
 		spriteListToDraw.push_back(mario);
 
+		Enemies = new Character(0, 0);
+		Enemies->acceleration.set(0, 0);
+		Enemies->force.set(0, 0);
+		Enemies->velocity.set(0, 0);
+		Enemies->setPosition(2, 1);
+		Enemies->setCenter(0, 0); // center of the sprites origin for rotation
 
+		spriteListToDraw.push_back(Enemies);
 
 }
 
@@ -77,14 +84,33 @@ void MarioBros::PreDraw()
 			}
 			else if((int)mario->oldx == j && (int)mario->oldy == i){
 				setCursorPosition(j, i);
+
 				if (level[i][j] == 0)
 					cout << ' ';
 				else if (level[i][j] == 1)
 					cout << 'B';
 				else if (level[i][j] == 2)
 					cout << 'P';
+				else if (level[i][j] == 3)
+					cout << ' ';
 			}
-			
+			if ((int)Enemies->position.y == i && (int)Enemies->position.x == j) {
+				setCursorPosition(j, i);
+				cout << Enemies->icon2;
+			}
+			else if ((int)Enemies->oldx == j && (int)Enemies->oldy == i) {
+				setCursorPosition(j, i);
+
+				if (level[i][j] == 0)
+					cout << ' ';
+				else if (level[i][j] == 1)
+					cout << 'B';
+				else if (level[i][j] == 2)
+					cout << 'P';
+				else if (level[i][j] == 3)
+					cout << ' ';
+
+			}
 		}
 	}
 
@@ -103,6 +129,8 @@ void MarioBros::DrawGame()
 		for (int j = 0; j < levelX; j++) {
 			if ((int)mario->position.y == i && (int)mario->position.x == j)
 				cout << mario->icon;
+			if ((int)Enemies->position.y == i && (int)Enemies->position.x == j)
+				cout << Enemies->icon2;
 			else if (level[i][j] == 0)
 				cout << ' ';
 			else if (level[i][j] == 1)
@@ -139,6 +167,21 @@ void MarioBros::PostDraw()
 	if (x != a || y != b) {
 		setCursorPosition(a, b);
 		cout << 'M';
+		setCursorPosition(x, y);
+		if (level[x][y] == 0)
+			cout << ' ';
+		else if (level[x][y] == 1)
+			cout << '=';
+		else if (level[x][y] == 2)
+			cout << 'P';
+	}
+	x = (int)Enemies->oldx;
+	y = (int)Enemies->oldy;
+	a = (int)Enemies->position.x;
+	b = (int)Enemies->position.x;
+	if (x != a || y != b) {
+		setCursorPosition(a, b);
+		cout << 'E';
 		setCursorPosition(x, y);
 		if (level[x][y] == 0)
 			cout << ' ';
@@ -215,7 +258,43 @@ void MarioBros::update()
 		mario->position.y++;//go under it
 	}
 
+	i = (int)Enemies->position.y;
+	j = (int)Enemies->position.x;
+	Enemies->oldx = j;
+	Enemies->oldy = i;
+	
+	//Enemies
+	Enemies->velocity.x = (1,0);
+	Enemies->addForce(Vector2(1, 0));
+	if (level[i][j] == 0) {
+		Enemies->addForce(gravity);//go under it
+		
+	}
+
+	if (level[i][j] == 1) {//if block below
+		Enemies->force.y = 0;//no gravity
+		Enemies->position.y--;
+	}
+	if (level[i][j] == 2)
+	{
+		Enemies->position.y--;
+	}
+
+	if (level[i][j] == 3)
+	{
+		Enemies->setPosition(0, 6);
+	}
+
+	if (Enemies->position.y < 1) Enemies->position.y = 1;
+	if (Enemies->position.y > levelY - 1) Enemies->position.y = levelY - 1;
+	if (Enemies->position.x < 0) Enemies->position.x = levelX - 1;
+	else if (Enemies->position.x > levelX - 1) Enemies->position.x = 0;
+	
+
+	Enemies->update(0.025);
 }
+
+
 
 
 /*************************************************/

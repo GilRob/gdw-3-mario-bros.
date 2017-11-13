@@ -1,5 +1,12 @@
-﻿  main.cpp
-c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\main.cpp(47): warning C4101: 'i': unreferenced local variable
-  Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.exe
-  Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)
+﻿  MarioBros.cpp
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(198): warning C4018: '<': signed/unsigned mismatch
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(244): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(247): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(248): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(267): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(289): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(290): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(294): warning C4305: 'argument': truncation from 'double' to 'float'
+  Mario Bros.vcxproj -> C:\Users\100657311\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.exe
+  Mario Bros.vcxproj -> C:\Users\100657311\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)

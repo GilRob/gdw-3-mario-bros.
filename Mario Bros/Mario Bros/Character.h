@@ -21,12 +21,13 @@ public:
 	Vector2 force;
 	float mass;
 	char icon;
+	char icon2;
 	bool jumping = false;
 	int jumpFrame = 0;
 	int oldx;
 	int oldy;
 
-	Character(int type);
+	Character(int type, int type2);
 	~Character();
 	void setCenter(float x, float y) {
 		center.x = x; center.y = y;
