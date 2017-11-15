@@ -46,15 +46,16 @@ int main()
 	Game->DrawGame();
 	double i;
 	bool run = true;
+	int ctr = 0;
 	while (run == true) {
-		if (GetAsyncKeyState('W') & 0x8000){ //VK_DOWN
-			//Game->keyboardDown('w');
-				Game->mario->velocity.y = -0.25;
-			//if (Game->mario->jumping == false) {
-			//	Game->mario->jumping = true;
-			//	Game->mario->jumpFrame = 0;
-			//}
+		if (ctr < 0) ctr = 0;//dont let counter be less then 0
+		if (GetAsyncKeyState('W') & 0x8000){ //if W pressed
+			if (ctr < 1000) {//only id counter is lower then threshhold value(1000)
+				Game->mario->addForce(Vector2( 0, -3));
+				ctr++;//incrase counter (can only jump for 1000 cycles
+			}
 		}
+		else ctr --;//while key isnt pressed, reduce jump counter back to 0
 		if (GetAsyncKeyState('D') & 0x8000) {
 			//Game->keyboardDown('d');
 			Game->mario->addForce(Vector2(1, 0));
@@ -66,6 +67,7 @@ int main()
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			Game->keyboardDown('q');
 		}
+		if (GetAsyncKeyState)
 		Game->update();
 		//Game->drawSprites();
 		Game->PreDraw();

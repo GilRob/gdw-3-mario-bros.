@@ -20,7 +20,7 @@ public:
 	Vector2 acceleration = Vector2(0, 0);;
 	Vector2 force;
 	float mass;
-	char icon;
+	char icon[5][3];
 	bool jumping = false;
 	int jumpFrame = 0;
 	int oldx;
@@ -40,6 +40,7 @@ public:
 	}
 	void addForce(Vector2 v);
 	virtual void update(float dt);
+	virtual void update(float dt, int lvl[45][100]);
 	virtual void draw();
 };
 
