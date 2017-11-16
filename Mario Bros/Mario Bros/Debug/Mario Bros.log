@@ -1,12 +1,35 @@
-﻿  MarioBros.cpp
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  stdafx.cpp
+  Vector2.cpp
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\vector2.cpp(39): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  MarioBros.cpp
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(198): warning C4018: '<': signed/unsigned mismatch
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(244): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(247): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(248): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(267): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(289): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(290): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(294): warning C4305: 'argument': truncation from 'double' to 'float'
-  Mario Bros.vcxproj -> C:\Users\100657311\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.exe
-  Mario Bros.vcxproj -> C:\Users\100657311\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(288): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(291): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(292): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(311): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(333): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(334): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(338): warning C4305: 'argument': truncation from 'double' to 'float'
+  main.cpp
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\main.cpp(47): warning C4101: 'i': unreferenced local variable
+  Character.cpp
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(63): error C2143: syntax error: missing ';' before '*'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(63): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(63): error C2238: unexpected token(s) preceding ';'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(64): error C2143: syntax error: missing ';' before '*'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(64): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(64): error C2238: unexpected token(s) preceding ';'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(112): error C2065: 'Character': undeclared identifier
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(112): error C2059: syntax error: '>'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(112): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.11.25503\include\vector(659): note: see declaration of 'std::vector'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(113): error C2065: 'Character': undeclared identifier
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(113): error C2059: syntax error: '>'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.h(113): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.11.25503\include\vector(659): note: see declaration of 'std::vector'
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(31): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\users\100657311\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...

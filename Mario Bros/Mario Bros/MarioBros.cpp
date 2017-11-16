@@ -201,6 +201,50 @@ void MarioBros::drawSprites()
 
 }
 
+/*bool MarioBros::isColliding(int width, int height)
+{
+	float MarioMinX = mario->position.x - mario->width / 2.0;
+	float MarioMaxX = mario->position.x + mario->width / 2.0;
+	float MarioMinY = mario->position.y - mario->height / 2.0;
+	float MarioMaxY = mario->position.y + mario->height / 2.0;
+
+	float EnemiesMinX = Enemies->position.x - Enemies->width / 2.0;
+	float EnemiesMaxX = Enemies->position.x + Enemies->width / 2.0;
+	float EnemiesMinY = Enemies->position.y - Enemies->height / 2.0;
+	float EnemiesMaxY = Enemies->position.y + Enemies->height / 2.0;
+
+	//Trying Stuff
+
+	if (MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX && MarioMaxY >= EnemiesMinY && MarioMinY <= EnemiesMaxY)
+	{
+		return true;
+	}
+	if (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX && EnemiesMinY >= MarioMaxY && EnemiesMaxY <= MarioMinY)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+	/* Collisions Maybe?
+	//X-Axis
+	if (MarioMinX > EnemiesMaxX || EnemiesMaxX > MarioMinX)
+	{
+	return true;
+	}
+	//Y-Axis
+	if (MarioMinY > EnemiesMaxY || EnemiesMaxY >= MarioMinY)
+	{
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+}*/
+
 void MarioBros::update()
 {
 	// update our clock so we have the delta time since the last update
@@ -292,7 +336,10 @@ void MarioBros::update()
 	
 
 	Enemies->update(0.025);
+
 }
+
+
 
 
 

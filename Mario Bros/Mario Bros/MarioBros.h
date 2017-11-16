@@ -38,10 +38,25 @@ public:
 	void keyboardDown(unsigned char key);
 	void keyboardUp(unsigned char key);
 
+
+
 	/*********************************/
 	/* DATA */
 	/*********************************/
 
+	//Collisions
+
+	/*bool isColliding(int width, int height);
+
+	float MarioMinX;
+	float MarioMaxX;
+	float MarioMinY;
+	float MarioMaxY;
+
+	float EnemiesMinX;
+	float EnemiesMaxX;
+	float EnemiesMinY;
+	float EnemiesMaxY;*/
 
 	// here is the sprite to draw to the screen
 
@@ -86,7 +101,9 @@ public:
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
+
 	};
+
 
 	// the background scroller
 	//Make sure to change the values at each end of the bottom of the map to 3

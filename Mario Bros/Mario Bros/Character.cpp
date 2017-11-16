@@ -5,6 +5,7 @@
 Character::Character(int type, int type2)
 {
 	if (type == 0) {
+		
 		icon = 'M';
 	}
 	if (type2 == 0)
@@ -45,3 +46,6 @@ void Character::draw()
 {
 	//sprite
 }
+
+
+

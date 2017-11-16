@@ -50,11 +50,13 @@ int main()
 		if (GetAsyncKeyState('W') & 0x8000){ //VK_DOWN
 			//Game->keyboardDown('w');
 				Game->mario->velocity.y = -0.25;
+				
+			}
 			//if (Game->mario->jumping == false) {
 			//	Game->mario->jumping = true;
 			//	Game->mario->jumpFrame = 0;
 			//}
-		}
+		
 		if (GetAsyncKeyState('D') & 0x8000) {
 			//Game->keyboardDown('d');
 			Game->mario->addForce(Vector2(1, 0));
@@ -66,6 +68,7 @@ int main()
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			Game->keyboardDown('q');
 		}
+		
 		Game->update();
 		//Game->drawSprites();
 		Game->PreDraw();

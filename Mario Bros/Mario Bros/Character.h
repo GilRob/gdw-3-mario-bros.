@@ -6,14 +6,15 @@
 #include <iostream>
 #include "Vector2.h"
 #include <string>
+#include "MarioBros.h"
 
 class Character
 {
 public:
 	int hp;
 	int speed;
-	int width;
-	int height;
+	int width = 1;
+	int height = 1;
 	Vector2 position;
 	Vector2 center;
 	Vector2 velocity = Vector2(0,0);
@@ -42,5 +43,11 @@ public:
 	void addForce(Vector2 v);
 	virtual void update(float dt);
 	virtual void draw();
+
+
+
 };
+
+
+
 
