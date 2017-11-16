@@ -1,6 +1,7 @@
-﻿  main.cpp
+﻿  MarioBros.cpp
 c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\main.cpp(70): warning C4551: function call missing argument list
-c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\main.cpp(47): warning C4101: 'i': unreferenced local variable
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(193): warning C4018: '<': signed/unsigned mismatch
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(224): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(225): warning C4305: 'argument': truncation from 'double' to 'float'
   Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.exe
   Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)

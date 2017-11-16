@@ -11,6 +11,14 @@ Character::Character(int type)
 		icon[3][0] = 'M'; icon[3][1] = 'M'; icon[3][2] = 'M';
 		icon[4][0] = 'X'; icon[4][1] = 'X'; icon[4][2] = 'X';//Does not display bottom row
 	}
+	else if (type == 1) {
+		icon[0][0] = ' '; icon[0][1] = 'E'; icon[0][2] = ' ';
+		icon[1][0] = 'E'; icon[1][1] = 'E'; icon[1][2] = 'E';
+		icon[2][0] = ' '; icon[2][1] = 'E'; icon[2][2] = ' ';
+		icon[3][0] = 'E'; icon[3][1] = 'E'; icon[3][2] = 'E';
+		icon[4][0] = 'X'; icon[4][1] = 'X'; icon[4][2] = 'X';//Does not display bottom row
+
+	}
 	mass = 1;
 }
 
@@ -46,6 +54,13 @@ void Character::update(float dt, int lvl[45][100])
 
 	int i = (int)position.y;//stores position
 	int j = (int)position.x;//stores position
+
+	//Enenmies
+	if (icon[0][1] == 'E') {
+		velocity.x = (1, 0);
+	}
+
+	//Not Enemies
 
 	if (lvl[i][j] > 0) {//if inside a block
 		position.y++;//go under it
