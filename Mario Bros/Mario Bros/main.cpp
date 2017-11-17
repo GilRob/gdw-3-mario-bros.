@@ -50,12 +50,17 @@ int main()
 	while (run == true) {
 		if (ctr < 0) ctr = 0;//dont let counter be less then 0
 		if (GetAsyncKeyState('W') & 0x8000){ //if W pressed
-			if (ctr < 1000) {//only id counter is lower then threshhold value(1000)
+			if (ctr < 400) {//only id counter is lower then threshhold value(1000)
 				Game->mario->addForce(Vector2( 0, -3));
 				ctr++;//incrase counter (can only jump for 1000 cycles
 			}
 		}
-		else ctr --;//while key isnt pressed, reduce jump counter back to 0
+		else {
+			if (Game->mario->velocity.y == 0)
+			ctr = 0;//while key isnt pressed, reduce jump counter back to 0
+			else ctr = 400;
+		}
+		
 		if (GetAsyncKeyState('D') & 0x8000) {
 			//Game->keyboardDown('d');
 			Game->mario->addForce(Vector2(1, 0));

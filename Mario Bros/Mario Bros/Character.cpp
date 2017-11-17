@@ -12,10 +12,10 @@ Character::Character(int type)
 		icon[4][0] = 'X'; icon[4][1] = 'X'; icon[4][2] = 'X';//Does not display bottom row
 	}
 	else if (type == 1) {
-		icon[0][0] = ' '; icon[0][1] = 'E'; icon[0][2] = ' ';
+		icon[0][0] = ' '; icon[0][1] = ' '; icon[0][2] = 'E';
 		icon[1][0] = 'E'; icon[1][1] = 'E'; icon[1][2] = 'E';
-		icon[2][0] = ' '; icon[2][1] = 'E'; icon[2][2] = ' ';
-		icon[3][0] = 'E'; icon[3][1] = 'E'; icon[3][2] = 'E';
+		icon[2][0] = 'E'; icon[2][1] = 'E'; icon[2][2] = 'E';
+		icon[3][0] = 'E'; icon[3][1] = ' '; icon[3][2] = 'E';
 		icon[4][0] = 'X'; icon[4][1] = 'X'; icon[4][2] = 'X';//Does not display bottom row
 
 	}
@@ -30,10 +30,10 @@ Character::~Character()
 
 void Character::getHit()
 {
-	icon[0][0] = ' '; icon[0][1] = 'D'; icon[0][2] = ' ';
+	icon[0][0] = ' '; icon[0][1] = ' '; icon[0][2] = 'D';
 	icon[1][0] = 'D'; icon[1][1] = 'D'; icon[1][2] = 'D';
-	icon[2][0] = ' '; icon[2][1] = 'D'; icon[2][2] = ' ';
-	icon[3][0] = 'D'; icon[3][1] = 'D'; icon[3][2] = 'D';
+	icon[2][0] = 'D'; icon[2][1] = 'D'; icon[2][2] = 'D';
+	icon[3][0] = 'D'; icon[3][1] = ' '; icon[3][2] = 'D';
 	icon[4][0] = 'X'; icon[4][1] = 'X'; icon[4][2] = 'X';
 
 }
@@ -71,13 +71,16 @@ void Character::update(float dt, int lvl[45][100])
 	}
 
 	//Not Enemies
-
-	if (lvl[i][j] > 0) {//if inside a block
-		position.y++;//go under it
+	for (int k = (height/-2); k < height / 2; k++) {
+		for (int l = (width / -2); l < width / 2; l++) {
+			if (lvl[i + k][j + l] > 0) {//if inside a block
+				position.y++;//go under it
+			}
+		}
 	}
 
 
-	if (lvl[i - 1 - (height/2)][j] > 0) {//if block above
+	if (lvl[i - (height/2)][j] > 0) {//if block above
 		if (velocity.y < 0) {//and moving upwards
 			velocity.y = 0;//no moving
 			//force.y = 0;//no force

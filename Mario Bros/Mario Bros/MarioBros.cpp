@@ -249,7 +249,7 @@ void MarioBros::update()
 		enemy->setPosition(0,3);
 	}
 
-	mario->update(0.09, level);//change the number to change the game speed
+	mario->update(0.11, level);//change the number to change the game speed
 	enemy->update(0.09, level);//change the number to change the game speed
 
 	if (isColliding((int)mario->width, (int)mario->height) == true)
