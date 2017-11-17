@@ -14,7 +14,7 @@ MarioBros::MarioBros(void)
 /* destructor */
 MarioBros::~MarioBros(void)
 {
-	/* deallocate memory and clean up here. if needed */
+/* deallocate memory and clean up here. if needed */
 }
 
 /*
@@ -32,14 +32,25 @@ void MarioBros::initializeGame()
 	//MoveWindow(window_handle, x, y, width, height, redraw_window);
 	MoveWindow(console, r.left, r.top, 1000, 800, TRUE);
 	//Add Mario
-		mario = new Character(0);
-		mario->acceleration.set(0, 0);
-		mario->force.set(0, 0);
-		mario->velocity.set(0, 0);
-		mario->setPosition(2,2);
-		mario->setCenter(0,0); // center of the sprites origin for rotation
+	mario = new Character(0);
+	mario->acceleration.set(0, 0);
+	mario->force.set(0, 0);
+	mario->velocity.set(0, 0);
+	mario->setPosition(20, 20);
+	mario->setCenter(2,2); // center of the sprites origin for rotation
+	mario->width = 3;
+	mario->height = 4;
+	spriteListToDraw.push_back(mario);
 
-		spriteListToDraw.push_back(mario);
+	enemy = new Character(1);
+	enemy->acceleration.set(0, 0);
+	enemy->force.set(0, 0);
+	enemy->velocity.set(0, 0);
+	enemy->setPosition(2, 2);
+	enemy->setCenter(2, 2); // center of the sprites origin for rotation
+	enemy->width = 3;
+	enemy->height = 4;
+	spriteListToDraw.push_back(enemy);
 
 
 
@@ -67,28 +78,60 @@ void MarioBros::draw()
 */
 
 
-void MarioBros::PreDraw()
+void MarioBros::PreDraw()//redraws mario
 {
-	for (int i = 0; i < levelY; i++) {
-		for (int j = 0; j < levelX; j++) {
-			if ((int)mario->position.y == i && (int)mario->position.x == j) {
-				setCursorPosition(j, i);
-				cout << mario->icon;
+	for (int i = 0; i < levelY; i++) {//for y axis
+		for (int j = 0; j < levelX; j++) {//for x axis
+
+			for (int h = 0; h < mario->height; h++) {//for marios height of sprite
+				for (int w = 0; w < mario->width; w++) {//for marios width of sprite
+					if ((int)(mario->position.y - (mario->height / 2) + h) == i && (int)(mario->position.x - (mario->width / 2) + w) == j) {//if this pixel on marios sprites is equal to this pizxl on the map
+						setCursorPosition(j, i);//set curser to this spot
+						cout << mario->icon[h][w];//draw that pixel
+					}
+					else if ((int)(mario->oldx - (mario->width / 2) + w) == j && (int)(mario->oldy - (mario->height / 2) + h) == i) {//if this pixel on his old sprite is equal to this pixel on the map
+						setCursorPosition(j, i);//set position of curser and erase that mario sprite (write map pixel on top)
+						if (level[i][j] <= 0)
+							cout << ' ';
+						else if (level[i][j] == 1)
+							cout << 'B';
+						else if (level[i][j] == 2)
+							cout << 'P';
+						else if (level[i][j] == 3)
+							cout << ' ';
+					}
+					//forw
+
+				}
+				//forh
 			}
-			else if((int)mario->oldx == j && (int)mario->oldy == i){
-				setCursorPosition(j, i);
-				if (level[i][j] == 0)
-					cout << ' ';
-				else if (level[i][j] == 1)
-					cout << 'B';
-				else if (level[i][j] == 2)
-					cout << 'P';
+			for (int h = 0; h < enemy->height; h++) {//for enemy height of sprite
+				for (int w = 0; w < enemy->width; w++) {//for enemy width of sprite
+					if ((int)(enemy->position.y - (enemy->height / 2) + h) == i && (int)(enemy->position.x - (enemy->width / 2) + w) == j) {//if this pixel on marios sprites is equal to this pizxl on the map
+						setCursorPosition(j, i);//set curser to this spot
+						cout << enemy->icon[h][w];//draw that pixel
+					}
+					else if ((int)(enemy->oldx - (enemy->width / 2) + w) == j && (int)(enemy->oldy - (enemy->height / 2) + h) == i) {//if this pixel on his old sprite is equal to this pixel on the map
+						setCursorPosition(j, i);//set position of curser and erase that enemy sprite (write map pixel on top)
+						if (level[i][j] <= 0)
+							cout << ' ';
+						else if (level[i][j] == 1)
+							cout << 'B';
+						else if (level[i][j] == 2)
+							cout << 'P';
+						else if (level[i][j] == 3)
+							cout << ' ';
+					}
+					//forw
+
+				}
+				//forh
 			}
-			
+
 		}
 	}
 
-	setCursorPosition(levelX, levelY);
+	setCursorPosition(levelX, levelY);//set curser to the bottom
 	//display game image
 }
 
@@ -96,14 +139,25 @@ void MarioBros::PreDraw()
 * DrawGame()
 *  - this is the actual drawing of the current frame of the game.
 */
-void MarioBros::DrawGame()
+void MarioBros::DrawGame()//draws the map and game the firt time only
 {
 	system("CLS");
-	for (int i = 0; i < levelY; i++) {
-		for (int j = 0; j < levelX; j++) {
-			if ((int)mario->position.y == i && (int)mario->position.x == j)
-				cout << mario->icon;
-			else if (level[i][j] == 0)
+	for (int i = 0; i < levelY; i++) {//for y axis
+		for (int j = 0; j < levelX; j++) {//for x axis
+			//if (((int)mario->position.y - (mario->height / 2) + h) == i && ((int)mario->position.x - (mario->width / 2) + w) == j) {
+			//	cout << mario->icon;
+			//}
+			//if ((int)mario->position.y + (mario->height / 2) >= i && (int)mario->position.y - (mario->height / 2) <= i) {  //if pixel is withing marios width 
+			//	if ((int)mario->position.x + (mario->width / 2) >= j && (int)mario->position.x - (mario->width / 2) <= j) { //and within his height
+			//		cout << mario->icon[1][1];//draw an M for now
+			//	}
+			//}
+			//else if ((int)enemy->position.y + (enemy->height / 2) >= i && (int)enemy->position.y - (enemy->height / 2) <= i) {  //if pixel is withing marios width 
+			//	if ((int)enemy->position.x + (enemy->width / 2) >= j && (int)enemy->position.x - (enemy->width / 2) <= j) { //and within his height
+			//		cout << enemy->icon[1][1];//draw an E for now
+			//	}
+			//}
+			if (level[i][j] <= 0)//else just draw the map at hat pixel
 				cout << ' ';
 			else if (level[i][j] == 1)
 				cout << 'B';
@@ -113,6 +167,34 @@ void MarioBros::DrawGame()
 		cout << endl;
 	}
 	//display game image
+}
+
+bool MarioBros::isColliding(int width, int height)
+{
+	float MarioMinX = mario->position.x - mario->width / 2.0;
+	float MarioMaxX = mario->position.x + mario->width / 2.0;
+	float MarioMinY = mario->position.y - mario->height / 2.0;
+	float MarioMaxY = mario->position.y + mario->height / 2.0;
+
+	float EnemiesMinX = enemy->position.x - enemy->width / 2.0;
+	float EnemiesMaxX = enemy->position.x + enemy->width / 2.0;
+	float EnemiesMinY = enemy->position.y - enemy->height / 2.0;
+	float EnemiesMaxY = enemy->position.y + enemy->height / 2.0;
+
+	//Trying Stuff
+
+	if (MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX && MarioMaxY >= EnemiesMinY && MarioMinY <= EnemiesMaxY)
+	{
+		return true;
+	}
+	if (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX && EnemiesMinY >= MarioMaxY && EnemiesMaxY <= MarioMinY)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void MarioBros::setCursorPosition(int x, int y)
@@ -130,23 +212,7 @@ void MarioBros::setCursorPosition(int x, int y)
 
 void MarioBros::PostDraw()
 {
-	const int X = levelX;
-	const int Y = levelY;
-	int x = (int)mario->oldx;
-	int y = (int)mario->oldy;
-	int a = (int)mario->position.x;
-	int b = (int)mario->position.x;
-	if (x != a || y != b) {
-		setCursorPosition(a, b);
-		cout << 'M';
-		setCursorPosition(x, y);
-		if (level[x][y] == 0)
-			cout << ' ';
-		else if (level[x][y] == 1)
-			cout << '=';
-		else if (level[x][y] == 2)
-			cout << 'P';
-	}
+	//nothing
 }
 
 
@@ -172,49 +238,24 @@ void MarioBros::update()
 	mario->oldy = i;
 	mario->addForce(gravity);
 
-	i = (int)mario->position.y;
-	j = (int)mario->position.x;
+	int k = (int)enemy->position.y;
+	int l = (int)enemy->position.x;
+	enemy->oldx = l;
+	enemy->oldy = k;
+	enemy->addForce(Vector2(1, 0));
+	enemy->addForce(gravity);
 
-	if (level[i][j] > 0) {
-		mario->position.y++;//go under it
+	if (level[k][l] == -1) {
+		enemy->setPosition(0,3);
 	}
 
-	if (level[i + 1][j] > 0) {//if block below
-		mario->force.y = 0;//no gravity
-	}
+	mario->update(0.09, level);//change the number to change the game speed
+	enemy->update(0.09, level);//change the number to change the game speed
 
-	if (level[i - 1][j] > 0) {//if block above
-		if (mario->velocity.y < 0) {//and moving upwards
-			mario->velocity.y = 0;//no moving
-			mario->force.y = 0;//no force
-		}
-		
+	if (isColliding((int)mario->width, (int)mario->height) == true)
+	{
+		enemy->getHit();
 	}
-	//if (mario->jumping == true && mario->jumpFrame < 2) {//if jumping,
-	//	mario->velocity.y = -1.;//move up
-	//	mario->jumpFrame++;//count frames
-	//}
-	else {
-		mario->jumpFrame = 0;
-	}
-
-	mario->update(0.025);
-
-	if (mario->position.y < 1) mario->position.y = 1;
-	if (mario->position.y > levelY -1) mario->position.y = levelY -1;
-	if (mario->position.x < 0) mario->position.x = levelX-1;
-	else if (mario->position.x > levelX-1) mario->position.x = 0;
-
-	//if on ground
-	if (level[i + 1][j] > 0) {//you can jump
-		mario->jumpFrame = 0;
-		mario->jumping = false;
-	}
-	//if inside a block
-	if (level[i][j] > 0) {
-		mario->position.y++;//go under it
-	}
-
 }
 
 
@@ -232,11 +273,10 @@ void MarioBros::keyboardDown(unsigned char key)
 	switch (key)
 	{
 	case 'w':
-		if (mario->jumping == false) {
-			mario->addForce(Vector2(0, 10));
+		//if (mario->jumping == false) {
+			mario->addForce(Vector2(0, -3));
 			mario->jumping = true;
-		}
-		mario->position.y--;
+		//}
 		break;
 	case 'a':
 		mario->addForce(Vector2(-1, 0));
