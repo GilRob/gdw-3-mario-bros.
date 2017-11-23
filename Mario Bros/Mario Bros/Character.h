@@ -42,5 +42,21 @@ public:
 	virtual void update(float dt);
 	virtual void update(float dt, int lvl[45][100]);
 	virtual void draw();
+
+	void getHit();
+	//Collisions
+
+	bool isColliding(int width, int height);
+
+	float MarioMinX;
+	float MarioMaxX;
+	float MarioMinY;
+	float MarioMaxY;
+
+	float EnemiesMinX;
+	float EnemiesMaxX;
+	float EnemiesMinY;
+	float EnemiesMaxY;
+
 };
 

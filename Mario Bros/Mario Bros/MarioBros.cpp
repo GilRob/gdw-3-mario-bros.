@@ -169,6 +169,34 @@ void MarioBros::DrawGame()//draws the map and game the firt time only
 	//display game image
 }
 
+bool MarioBros::isColliding(int width, int height)
+{
+	float MarioMinX = mario->position.x - mario->width / 2.0;
+	float MarioMaxX = mario->position.x + mario->width / 2.0;
+	float MarioMinY = mario->position.y - mario->height / 2.0;
+	float MarioMaxY = mario->position.y + mario->height / 2.0;
+
+	float EnemiesMinX = enemy->position.x - enemy->width / 2.0;
+	float EnemiesMaxX = enemy->position.x + enemy->width / 2.0;
+	float EnemiesMinY = enemy->position.y - enemy->height / 2.0;
+	float EnemiesMaxY = enemy->position.y + enemy->height / 2.0;
+
+	//Trying Stuff
+
+	if (MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX && MarioMaxY >= EnemiesMinY && MarioMinY <= EnemiesMaxY)
+	{
+		return true;
+	}
+	if (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX && EnemiesMinY >= MarioMaxY && EnemiesMaxY <= MarioMinY)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void MarioBros::setCursorPosition(int x, int y)
 {
 
@@ -221,10 +249,13 @@ void MarioBros::update()
 		enemy->setPosition(0,3);
 	}
 
-	mario->update(0.09, level);//change the number to change the game speed
+	mario->update(0.11, level);//change the number to change the game speed
 	enemy->update(0.09, level);//change the number to change the game speed
 
-
+	if (isColliding((int)mario->width, (int)mario->height) == true)
+	{
+		enemy->getHit();
+	}
 }
 
 

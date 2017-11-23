@@ -28,7 +28,7 @@ public:
 	void PreDraw(); // prior to drawing
 	void DrawGame(); // actual drawing the frame
 	void PostDraw(); // cleanup and prepare for next frame
-
+	bool isColliding(int width, int height);
 	void drawSprites(); // draw the sprite list
 
 							   /* update routines, the game loop */
