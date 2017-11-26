@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "MarioBros.h"
+#include "console.h"
 
 
 /* constructor */
@@ -26,11 +27,12 @@ MarioBros::~MarioBros(void)
 void MarioBros::initializeGame()
 {
 	///* load the background */
-	HWND console = GetConsoleWindow();
-	RECT r;
-	GetWindowRect(console, &r); //stores the console's current dimensions
+	
+	console.Initialize(vec2(100,45), "Mario Bros");
+	
+	//GetWindowRect(console, &r); //stores the console's current dimensions
 	//MoveWindow(window_handle, x, y, width, height, redraw_window);
-	MoveWindow(console, r.left, r.top, 1000, 800, TRUE);
+	//MoveWindow(console, r.left, r.top, 1000, 800, TRUE);
 	//Add Mario
 	mario = new Character(0);
 	mario->acceleration.set(0, 0);
@@ -42,16 +44,19 @@ void MarioBros::initializeGame()
 	mario->height = 4;
 	spriteListToDraw.push_back(mario);
 
-	enemy = new Character(1);
-	enemy->acceleration.set(0, 0);
-	enemy->force.set(0, 0);
-	enemy->velocity.set(0, 0);
-	enemy->setPosition(2, 2);
-	enemy->setCenter(2, 2); // center of the sprites origin for rotation
-	enemy->width = 3;
-	enemy->height = 4;
-	spriteListToDraw.push_back(enemy);
-
+	for (int i = 0; i < 3; i++) {
+		Character* enemy;
+		enemy = new Character(1);
+		enemy->acceleration.set(0, 0);
+		enemy->force.set(0, 0);
+		enemy->velocity.set(0, 0);
+		enemy->setPosition(2 + (i*5), 2 + (i * 5));
+		enemy->setCenter(2, 2); // center of the sprites origin for rotation
+		enemy->width = 3;
+		enemy->height = 4;
+		enemyList.push_back(enemy);
+		spriteListToDraw.push_back(enemy);
+	}
 
 
 }
@@ -80,59 +85,7 @@ void MarioBros::draw()
 
 void MarioBros::PreDraw()//redraws mario
 {
-	for (int i = 0; i < levelY; i++) {//for y axis
-		for (int j = 0; j < levelX; j++) {//for x axis
 
-			for (int h = 0; h < mario->height; h++) {//for marios height of sprite
-				for (int w = 0; w < mario->width; w++) {//for marios width of sprite
-					if ((int)(mario->position.y - (mario->height / 2) + h) == i && (int)(mario->position.x - (mario->width / 2) + w) == j) {//if this pixel on marios sprites is equal to this pizxl on the map
-						setCursorPosition(j, i);//set curser to this spot
-						cout << mario->icon[h][w];//draw that pixel
-					}
-					else if ((int)(mario->oldx - (mario->width / 2) + w) == j && (int)(mario->oldy - (mario->height / 2) + h) == i) {//if this pixel on his old sprite is equal to this pixel on the map
-						setCursorPosition(j, i);//set position of curser and erase that mario sprite (write map pixel on top)
-						if (level[i][j] <= 0)
-							cout << ' ';
-						else if (level[i][j] == 1)
-							cout << 'B';
-						else if (level[i][j] == 2)
-							cout << 'P';
-						else if (level[i][j] == 3)
-							cout << ' ';
-					}
-					//forw
-
-				}
-				//forh
-			}
-			for (int h = 0; h < enemy->height; h++) {//for enemy height of sprite
-				for (int w = 0; w < enemy->width; w++) {//for enemy width of sprite
-					if ((int)(enemy->position.y - (enemy->height / 2) + h) == i && (int)(enemy->position.x - (enemy->width / 2) + w) == j) {//if this pixel on marios sprites is equal to this pizxl on the map
-						setCursorPosition(j, i);//set curser to this spot
-						cout << enemy->icon[h][w];//draw that pixel
-					}
-					else if ((int)(enemy->oldx - (enemy->width / 2) + w) == j && (int)(enemy->oldy - (enemy->height / 2) + h) == i) {//if this pixel on his old sprite is equal to this pixel on the map
-						setCursorPosition(j, i);//set position of curser and erase that enemy sprite (write map pixel on top)
-						if (level[i][j] <= 0)
-							cout << ' ';
-						else if (level[i][j] == 1)
-							cout << 'B';
-						else if (level[i][j] == 2)
-							cout << 'P';
-						else if (level[i][j] == 3)
-							cout << ' ';
-					}
-					//forw
-
-				}
-				//forh
-			}
-
-		}
-	}
-
-	setCursorPosition(levelX, levelY);//set curser to the bottom
-	//display game image
 }
 
 /*
@@ -141,48 +94,87 @@ void MarioBros::PreDraw()//redraws mario
 */
 void MarioBros::DrawGame()//draws the map and game the firt time only
 {
-	system("CLS");
+	//system("CLS");
 	for (int i = 0; i < levelY; i++) {//for y axis
 		for (int j = 0; j < levelX; j++) {//for x axis
-			//if (((int)mario->position.y - (mario->height / 2) + h) == i && ((int)mario->position.x - (mario->width / 2) + w) == j) {
-			//	cout << mario->icon;
-			//}
-			//if ((int)mario->position.y + (mario->height / 2) >= i && (int)mario->position.y - (mario->height / 2) <= i) {  //if pixel is withing marios width 
-			//	if ((int)mario->position.x + (mario->width / 2) >= j && (int)mario->position.x - (mario->width / 2) <= j) { //and within his height
-			//		cout << mario->icon[1][1];//draw an M for now
-			//	}
-			//}
-			//else if ((int)enemy->position.y + (enemy->height / 2) >= i && (int)enemy->position.y - (enemy->height / 2) <= i) {  //if pixel is withing marios width 
-			//	if ((int)enemy->position.x + (enemy->width / 2) >= j && (int)enemy->position.x - (enemy->width / 2) <= j) { //and within his height
-			//		cout << enemy->icon[1][1];//draw an E for now
-			//	}
-			//}
-			if (level[i][j] <= 0)//else just draw the map at hat pixel
-				cout << ' ';
+
+			if (level[i][j] <= 0)
+				console.Print(" ", vec2(j, i), vec2(1, 1), 11);
 			else if (level[i][j] == 1)
-				cout << 'B';
+				console.Print("B", vec2(j, i), vec2(1, 1), 11);
 			else if (level[i][j] == 2)
-				cout << 'P';
+				console.Print("P", vec2(j, i), vec2(1, 1), 11);
 		}
-		cout << endl;
+		//cout << endl;
 	}
+	for (int h = 0; h < mario->height; h++) {//for marios height of sprite
+		for (int w = 0; w < mario->width; w++) {//for marios width of sprite
+			int i = (int)(mario->position.y - (mario->height / 2) + h);
+			int j = (int)(mario->position.x - (mario->width / 2) + w);
+			console.Print(mario->icon[h][w], vec2(j, i), vec2(1, 1), 12);//draw that pixel
+		}
+	}
+	for (int z = 0; z < enemyList.size(); z++) {
+		for (int h = 0; h < enemyList[z]->height; h++) {//for enemy height of sprite
+			for (int w = 0; w < enemyList[z]->width; w++) {//for enemy width of sprite
+				int i = (int)(enemyList[z]->position.y - (enemyList[z]->height / 2) + h);
+				int j = (int)(enemyList[z]->position.x - (enemyList[z]->width / 2) + w);
+				console.Print(enemyList[z]->icon[h][w], vec2(j, i), vec2(1, 1), 2);//draw that pixel
+			}
+		}
+	}
+	console.Draw();
+	console.Clear();
 	//display game image
 }
 
-bool MarioBros::isColliding(int width, int height)
+bool MarioBros::isColliding(int i, int width, int height)
 {
+	
 	float MarioMinX = mario->position.x - mario->width / 2.0;
 	float MarioMaxX = mario->position.x + mario->width / 2.0;
 	float MarioMinY = mario->position.y - mario->height / 2.0;
 	float MarioMaxY = mario->position.y + mario->height / 2.0;
 
-	float EnemiesMinX = enemy->position.x - enemy->width / 2.0;
-	float EnemiesMaxX = enemy->position.x + enemy->width / 2.0;
-	float EnemiesMinY = enemy->position.y - enemy->height / 2.0;
-	float EnemiesMaxY = enemy->position.y + enemy->height / 2.0;
+	float EnemiesMinX = enemyList[i]->position.x - enemyList[i]->width / 2.0;
+	float EnemiesMaxX = enemyList[i]->position.x + enemyList[i]->width / 2.0;
+	float EnemiesMinY = enemyList[i]->position.y - enemyList[i]->height / 2.0;
+	float EnemiesMaxY = enemyList[i]->position.y + enemyList[i]->height / 2.0;
 
 	//Trying Stuff
-
+	if (buffer < 0) {
+		if (level[(int)(mario->position.y - (height / 2)) - 1][(int)mario->position.x] == 2) {//if block above
+			for (int j = 0; j < enemyList.size(); j++) {
+				if (enemyList[j]->flipped == false) {
+					enemyList[j]->flipped = true;
+					buffer = 20;
+					goto jump;
+				}
+				else {
+					enemyList[j]->flipped = false;
+					buffer = 20;
+					goto jump;
+				}
+			}
+		}
+		if (level[(int)(mario->position.y - (height / 2)) - 1][(int)mario->position.x] > 0) {//if block above
+			if ((MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX) || (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX)) {//and mario overlapping x's with enemy
+				if (enemyList[i]->flipped == false) {
+					enemyList[i]->flipped = true;
+					buffer = 20;
+					goto jump;
+				}
+				else {
+					enemyList[i]->flipped = false;
+					buffer = 20;
+					goto jump;
+				}
+			}
+		}
+	}
+jump:
+	buffer--;
+	if (buffer < -1000000) buffer = 0;
 	if (MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX && MarioMaxY >= EnemiesMinY && MarioMinY <= EnemiesMaxY)
 	{
 		return true;
@@ -227,10 +219,13 @@ void MarioBros::drawSprites()
 void MarioBros::update()
 {
 	// update our clock so we have the delta time since the last update
+	clock_t start_t, end_t, total_t;
+	int t;
 
+	start_t = clock();
 	//if birdlist empty, and piglist empty, end game
 	Vector2 gravity;
-	gravity.set(0, 1.25);
+	gravity.set(0, 1.5);
 
 	int i = (int)mario->position.y;
 	int j = (int)mario->position.x;
@@ -238,24 +233,34 @@ void MarioBros::update()
 	mario->oldy = i;
 	mario->addForce(gravity);
 
-	int k = (int)enemy->position.y;
-	int l = (int)enemy->position.x;
-	enemy->oldx = l;
-	enemy->oldy = k;
-	enemy->addForce(Vector2(1, 0));
-	enemy->addForce(gravity);
+	mario->update(0.7, level);//change the number to change the game speed
 
-	if (level[k][l] == -1) {
-		enemy->setPosition(0,3);
+	for (int z = 0; z < enemyList.size(); z++) {
+		int k = (int)enemyList[z]->position.y;
+		int l = (int)enemyList[z]->position.x;
+		enemyList[z]->oldx = l;
+		enemyList[z]->oldy = k;
+		//enemy->addForce(Vector2(1, 0));
+		enemyList[z]->addForce(gravity);
+
+		if (level[k][l] == -1) {
+			enemyList[z]->setPosition(0, 3);
+		}
+
+		enemyList[z]->update(0.7, level);//change the number to change the game speed
+
+		if (isColliding(z, (int)mario->width, (int)mario->height) == true)
+		{
+
+			if (enemyList[z]->flipped == true) {
+				enemyList.erase(enemyList.begin() + z);
+			}
+			else {
+				mario->getHit();
+			}
+		}
 	}
-
-	mario->update(0.11, level);//change the number to change the game speed
-	enemy->update(0.09, level);//change the number to change the game speed
-
-	if (isColliding((int)mario->width, (int)mario->height) == true)
-	{
-		enemy->getHit();
-	}
+	//cout << start_t;
 }
 
 

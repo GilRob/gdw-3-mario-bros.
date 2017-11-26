@@ -6,7 +6,10 @@
 #include <iostream>
 #include "Character.h"
 #include <algorithm>
+#include <time.h>
+#include <stdio.h>
 #include <cmath>
+#include "console.h"
 
 using namespace std;
 
@@ -28,7 +31,7 @@ public:
 	void PreDraw(); // prior to drawing
 	void DrawGame(); // actual drawing the frame
 	void PostDraw(); // cleanup and prepare for next frame
-	bool isColliding(int width, int height);
+	bool isColliding(int i, int width, int height);
 	void drawSprites(); // draw the sprite list
 
 							   /* update routines, the game loop */
@@ -44,9 +47,10 @@ public:
 
 
 	// here is the sprite to draw to the screen
-
+	Console console;
 	Character *mario;
-	Character *enemy;
+	int pow = 0;
+	int buffer = 0;
 	int levelX = 100;
 	int levelY = 45;
 	int level[45][100] = {

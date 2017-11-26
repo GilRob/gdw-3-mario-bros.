@@ -19,12 +19,15 @@ public:
 	Vector2 velocity = Vector2(0,0);
 	Vector2 acceleration = Vector2(0, 0);;
 	Vector2 force;
+	int type;
 	float mass;
-	char icon[5][3];
+	char* icon[5][3];
 	bool jumping = false;
 	int jumpFrame = 0;
 	int oldx;
 	int oldy;
+	bool flipped = false;
+	int ctr = 0;
 
 	Character(int type);
 	~Character();

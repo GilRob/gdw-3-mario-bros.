@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <windows.h>
 #include "MarioBros.h"
+#include "console.h"
 
 MarioBros* Game;
 
@@ -50,32 +51,31 @@ int main()
 	while (run == true) {
 		if (ctr < 0) ctr = 0;//dont let counter be less then 0
 		if (GetAsyncKeyState('W') & 0x8000){ //if W pressed
-			if (ctr < 400) {//only id counter is lower then threshhold value(1000)
-				Game->mario->addForce(Vector2( 0, -3));
+			if (ctr < 10) {//only id counter is lower then threshhold value(1000)
+				Game->mario->addForce(Vector2( 0, -3.5));
 				ctr++;//incrase counter (can only jump for 1000 cycles
 			}
 		}
 		else {
-			if (Game->mario->velocity.y == 0)
+			if (Game->mario->velocity.y <= 0.1)
 			ctr = 0;//while key isnt pressed, reduce jump counter back to 0
-			else ctr = 400;
+			else ctr = 10;
 		}
 		
 		if (GetAsyncKeyState('D') & 0x8000) {
 			//Game->keyboardDown('d');
-			Game->mario->addForce(Vector2(1, 0));
+			Game->mario->addForce(Vector2(1.5, 0));
 		}
 		if (GetAsyncKeyState('A') & 0x8000) {
 			//Game->keyboardDown('a');
-			Game->mario->addForce(Vector2(-1, 0));
+			Game->mario->addForce(Vector2(-1.5, 0));
 		}
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			Game->keyboardDown('q');
 		}
 		if (GetAsyncKeyState)
 		Game->update();
-		//Game->drawSprites();
-		Game->PreDraw();
+		Game->DrawGame();
 	}
 	return 0;
 }
