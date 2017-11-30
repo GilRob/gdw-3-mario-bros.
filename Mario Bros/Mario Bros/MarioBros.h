@@ -40,6 +40,12 @@ public:
 				   /* input callback functions */
 	void keyboardDown(unsigned char key);
 	void keyboardUp(unsigned char key);
+	
+
+	//Enemy Spawn Timer Stuff
+	void EnemySpawner();
+	int spawner = 0;
+	int levelNumber = 1;
 
 	/*********************************/
 	/* DATA */

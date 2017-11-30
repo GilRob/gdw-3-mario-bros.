@@ -44,21 +44,145 @@ void MarioBros::initializeGame()
 	mario->height = 4;
 	spriteListToDraw.push_back(mario);
 
-	for (int i = 0; i < 3; i++) {
-		Character* enemy;
-		enemy = new Character(1);
-		enemy->acceleration.set(0, 0);
-		enemy->force.set(0, 0);
-		enemy->velocity.set(0, 0);
-		enemy->setPosition(2 + (i*5), 2 + (i * 5));
-		enemy->setCenter(2, 2); // center of the sprites origin for rotation
-		enemy->width = 3;
-		enemy->height = 4;
-		enemyList.push_back(enemy);
-		spriteListToDraw.push_back(enemy);
+	/*for (int i = 0; i < 1; i++) {
+			Character* enemy;
+			enemy = new Character(1);
+			enemy->acceleration.set(0, 0);
+			enemy->force.set(0, 0);
+			enemy->velocity.set(0, 0);
+			enemy->setPosition(2 + (i * 5), 2 + (i * 5));
+			enemy->setCenter(2, 2); // center of the sprites origin for rotation
+			enemy->width = 3;
+			enemy->height = 4;
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+	}*/
+
+
+}
+void MarioBros::EnemySpawner()
+{
+	Character* enemy; //Left side juans
+	enemy = new Character(1);
+	enemy->acceleration.set(0, 0);
+	enemy->force.set(0, 0);
+	enemy->velocity.set(0, 0);
+	//enemy->setPosition(2 + (s * 5), 2 + (s * 5));
+	enemy->setPosition(1, 1);
+	enemy->setCenter(2, 2); // center of the sprites origin for rotation
+	enemy->width = 3;
+	enemy->height = 4;
+
+	Character* enemy2; //Right side juans
+	enemy2 = new Character(2);
+	enemy2->acceleration.set(0, 0);
+	enemy2->force.set(0, 0);
+	enemy2->velocity.set(0, 0);
+	//enemy->setPosition(2 + (s * 5), 2 + (s * 5));
+	enemy2->setPosition(99, 1);
+	enemy2->setCenter(2, 2); // center of the sprites origin for rotation
+	enemy2->width = 3;
+	enemy2->height = 4;
+
+
+	//Testing spawning on opposite ends
+	if (levelNumber == 1)
+	{
+		spawner++;
+		if (spawner == 20 || spawner == 60)
+		{
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+		}
+		if (spawner == 40)
+		{
+			enemyList.push_back(enemy2);
+			spriteListToDraw.push_back(enemy2);
+		}
+		if (enemyList.size() == 0 && spawner > 60)
+		{
+			levelNumber++;
+			spawner = 0;
+		}
 	}
-
-
+	if (levelNumber == 2)
+	{
+		spawner++;
+		if (spawner == 20  || spawner == 60)
+		{
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+		}
+		if (spawner == 40 || spawner == 80)
+		{
+			enemyList.push_back(enemy2);
+			spriteListToDraw.push_back(enemy2);
+		}
+		if (enemyList.size() == 0 && spawner > 80)
+		{
+			levelNumber++;
+			spawner = 0;
+		}
+	}
+	if (levelNumber == 3)
+	{
+		spawner++;
+		if (spawner == 20 || spawner == 60 || spawner == 100)
+		{
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+		}
+		if (spawner == 40 || spawner == 80)
+		{
+			enemyList.push_back(enemy2);
+			spriteListToDraw.push_back(enemy2);
+		}
+		if (enemyList.size() == 0 && spawner > 100)
+		{
+			levelNumber++;
+			spawner = 0;
+		}
+	}
+	if (levelNumber == 4)
+	{
+		spawner++;
+		if (spawner == 20 || spawner == 60|| spawner == 100)
+		{
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+		}
+		if (spawner == 40 || spawner == 80 || spawner == 120)
+		{
+			enemyList.push_back(enemy2);
+			spriteListToDraw.push_back(enemy2);
+		}
+		if (enemyList.size() == 0 && spawner > 120)
+		{
+			levelNumber++;
+			spawner = 0;
+		}
+	}
+	if (levelNumber == 5)
+	{
+		spawner++;
+		if (spawner == 20 || spawner == 60 || spawner == 100 || spawner == 140)
+		{
+			enemyList.push_back(enemy);
+			spriteListToDraw.push_back(enemy);
+		}
+		if (spawner == 40 || spawner == 80 || spawner == 120)
+		{
+			enemyList.push_back(enemy2);
+			spriteListToDraw.push_back(enemy2);
+		}
+		if (enemyList.size() == 0 && spawner > 140)
+		{
+			//Instead of dis, send ya back to the main menu (game over first?)
+			levelNumber++;
+			spawner = 0;
+		}
+	}
+		//cout << spawner;
 }
 
 /* draw()
@@ -130,7 +254,7 @@ void MarioBros::DrawGame()//draws the map and game the firt time only
 
 bool MarioBros::isColliding(int i, int width, int height)
 {
-	
+
 	float MarioMinX = mario->position.x - mario->width / 2.0;
 	float MarioMaxX = mario->position.x + mario->width / 2.0;
 	float MarioMinY = mario->position.y - mario->height / 2.0;
@@ -143,22 +267,37 @@ bool MarioBros::isColliding(int i, int width, int height)
 
 	//Trying Stuff
 	if (buffer < 0) {
-		if (level[(int)(mario->position.y - (height / 2)) - 1][(int)mario->position.x] == 2) {//if block above
+		if (level[(int)(mario->position.y - (height / 2)) - 1][(int)mario->position.x] == 2) {//if pow block above
+			//Flip All
 			for (int j = 0; j < enemyList.size(); j++) {
 				if (enemyList[j]->flipped == false) {
 					enemyList[j]->flipped = true;
 					buffer = 20;
-					goto jump;
 				}
 				else {
 					enemyList[j]->flipped = false;
 					buffer = 20;
-					goto jump;
 				}
 			}
+			pow++;
+			//Pow
+			if (pow == 1) {
+				for (int i = 0; i < 6; i++) {
+					level[32][48 + i] = 0;
+				}
+			}
+			else if (pow == 2) {
+				for (int i = 0; i < 6; i++) {
+					level[30][48 + i] = 0;
+				}
+				for (int i = 0; i < 6; i++) {
+					level[31][48 + i] = 0;
+				}
+			}
+			goto jump;
 		}
 		if (level[(int)(mario->position.y - (height / 2)) - 1][(int)mario->position.x] > 0) {//if block above
-			if ((MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX) || (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX)) {//and mario overlapping x's with enemy
+			if (((MarioMaxX >= EnemiesMinX && MarioMinX <= EnemiesMaxX) || (EnemiesMinX >= MarioMaxX &&  EnemiesMaxX <= MarioMinX)) && MarioMaxY - EnemiesMinY <= 10 && MarioMaxY - EnemiesMinY > 0) {//and mario overlapping x's with enemy
 				if (enemyList[i]->flipped == false) {
 					enemyList[i]->flipped = true;
 					buffer = 20;
@@ -188,7 +327,6 @@ jump:
 		return false;
 	}
 }
-
 void MarioBros::setCursorPosition(int x, int y)
 {
 
@@ -210,6 +348,7 @@ void MarioBros::PostDraw()
 
 void MarioBros::drawSprites()
 {
+	
 	for (int i = 0; i < spriteListToDraw.size(); i++) {
 		spriteListToDraw[i]->draw();
 	}
@@ -218,11 +357,9 @@ void MarioBros::drawSprites()
 
 void MarioBros::update()
 {
-	// update our clock so we have the delta time since the last update
-	clock_t start_t, end_t, total_t;
-	int t;
+	EnemySpawner();
 
-	start_t = clock();
+
 	//if birdlist empty, and piglist empty, end game
 	Vector2 gravity;
 	gravity.set(0, 1.5);
@@ -260,7 +397,7 @@ void MarioBros::update()
 			}
 		}
 	}
-	//cout << start_t;
+	
 }
 
 

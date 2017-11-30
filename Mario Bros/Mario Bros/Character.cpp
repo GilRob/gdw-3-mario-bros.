@@ -21,6 +21,14 @@ Character::Character(int x)
 		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";//Does not display bottom row
 
 	}
+	else if (x == 2){
+		type = 2;
+		icon[0][0] = "E"; icon[0][1] = " "; icon[0][2] = " ";
+		icon[1][0] = "E"; icon[1][1] = "E"; icon[1][2] = "E";
+		icon[2][0] = "E"; icon[2][1] = "E"; icon[2][2] = "E";
+		icon[3][0] = "E"; icon[3][1] = " "; icon[3][2] = "E";
+		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";//Does not display bottom row
+	}
 	mass = 1;
 }
 
@@ -46,6 +54,16 @@ void Character::getHit()
 		icon[3][0] = "D"; icon[3][1] = " "; icon[3][2] = "D";
 		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";
 	}
+	if (type == 2) {
+		icon[0][0] = "D"; icon[0][1] = " "; icon[0][2] = " ";
+		icon[1][0] = "D"; icon[1][1] = "D"; icon[1][2] = "D";
+		icon[2][0] = "D"; icon[2][1] = "D"; icon[2][2] = "D";
+		icon[3][0] = "D"; icon[3][1] = " "; icon[3][2] = "D";
+		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";
+
+
+	}
+
 
 	
 
@@ -78,14 +96,25 @@ void Character::update(float dt, int lvl[45][100])
 	//int i = (int)position.y;//stores position
 	//int j = (int)position.x;//stores position
 
-	//Enenmies
+	//Testing Reverse Movement
+
+	//Enemies
 	if (type == 1 && flipped == false) {
 		icon[0][0] = " "; icon[0][1] = " "; icon[0][2] = "E";
 		icon[1][0] = "E"; icon[1][1] = "E"; icon[1][2] = "E";
 		icon[2][0] = "E"; icon[2][1] = "E"; icon[2][2] = "E";
 		icon[3][0] = "E"; icon[3][1] = " "; icon[3][2] = "E";
-		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";
+		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";//Does not display bottom row
 		addForce(Vector2(1, 0));
+		ctr = 0;
+	}
+	if (type == 2 && flipped == false) {
+		icon[0][0] = "E"; icon[0][1] = " "; icon[0][2] = " ";
+		icon[1][0] = "E"; icon[1][1] = "E"; icon[1][2] = "E";
+		icon[2][0] = "E"; icon[2][1] = "E"; icon[2][2] = "E";
+		icon[3][0] = "E"; icon[3][1] = " "; icon[3][2] = "E";
+		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";//Does not display bottom row
+		addForce(Vector2(-1, 0));
 		ctr = 0;
 	}
 	else if (type == 1 && flipped == true) {
@@ -100,8 +129,21 @@ void Character::update(float dt, int lvl[45][100])
 			ctr = 0;
 			flipped = false;
 		}
+		
 	}
-
+	else if (type == 2 && flipped == true) {
+		icon[0][0] = "E"; icon[0][1] = " "; icon[0][2] = "E";
+		icon[1][0] = "E"; icon[1][1] = "E"; icon[1][2] = "E";
+		icon[2][0] = "E"; icon[2][1] = "E"; icon[2][2] = "E";
+		icon[3][0] = " "; icon[3][1] = " "; icon[3][2] = "E";
+		icon[4][0] = "X"; icon[4][1] = "X"; icon[4][2] = "X";
+		//velocity.x = (0, 0);
+		ctr++;
+		if (ctr >= 10000) {
+			ctr = 0;
+			flipped = false;
+		}
+	}
 	//Not Enemies
 	for (int k = 0; k < height / 2; k++) {//bottom half
 		for (int l = (width / -2); l < width / 2; l++) {

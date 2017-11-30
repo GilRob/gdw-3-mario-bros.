@@ -1,22 +1,25 @@
 ﻿  MarioBros.cpp
-c:\users\100651857\documents\mario bros\mario bros\character.h(38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(117): warning C4018: '<': signed/unsigned mismatch
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(134): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(135): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(136): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(137): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(139): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(140): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(141): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(142): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(147): warning C4018: '<': signed/unsigned mismatch
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(213): warning C4018: '<': signed/unsigned mismatch
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(236): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(238): warning C4018: '<': signed/unsigned mismatch
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(250): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(222): warning C4101: 'end_t': unreferenced local variable
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(222): warning C4101: 'total_t': unreferenced local variable
-c:\users\100651857\documents\mario bros\mario bros\mariobros.cpp(223): warning C4101: 't': unreferenced local variable
-  Mario Bros.vcxproj -> C:\Users\100651857\Documents\Mario Bros\Debug\Mario Bros.exe
-  Mario Bros.vcxproj -> C:\Users\100651857\Documents\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(241): warning C4018: '<': signed/unsigned mismatch
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(258): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(259): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(260): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(261): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(263): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(264): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(265): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(266): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(272): warning C4018: '<': signed/unsigned mismatch
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(352): warning C4018: '<': signed/unsigned mismatch
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(373): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(375): warning C4018: '<': signed/unsigned mismatch
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\mariobros.cpp(387): warning C4305: 'argument': truncation from 'double' to 'float'
+  Character.cpp
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.h(38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(79): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(81): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(90): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\users\100651857\documents\gdw-3-mario-bros\mario bros\mario bros\character.cpp(92): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.exe
+  Mario Bros.vcxproj -> C:\Users\100651857\Documents\gdw-3-mario-bros\Mario Bros\Debug\Mario Bros.pdb (Partial PDB)
